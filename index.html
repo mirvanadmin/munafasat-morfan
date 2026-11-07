@@ -22,7 +22,7 @@ header{background:#fff;border-radius:0 0 14px 14px;display:flex;align-items:cent
 .tabs button{background:transparent;border:1px solid #D8C6C6;border-radius:999px;padding:6px 22px;cursor:pointer;font-family:inherit;font-weight:600;color:#000}
 .tabs.mirvan{font-size:15px;letter-spacing:5px}
 .tabs.jadwal{font-size:19px}
-.grid{display:grid;grid-template-columns:repeat(3,1fr);gap:10px}
+.grid{display:grid;grid-template-columns:repeat(3,1fr);gap:10px}.tabs button{min-width:104px}.tabs button.active{background:#fff;border-color:#C9B88A;box-shadow:0 1px 5px rgba(0,0,0,.08)}.competition-table-wrap{display:none;background:#fff;border-radius:14px;padding:16px;margin-top:16px;box-shadow:0 2px 8px rgba(0,0,0,.06)}.competition-table-wrap h2{font-size:19px;font-weight:700;line-height:1.5;margin-bottom:12px}.table-scroll{width:100%;overflow-x:auto;-webkit-overflow-scrolling:touch}.competition-table{width:100%;min-width:540px;border-collapse:collapse;font-size:13px;text-align:center}.competition-table th,.competition-table td{padding:10px;border:1px solid #E8DED0;white-space:nowrap}.competition-table thead{background:#F5F0E6}.competition-table-wrap .status{font-weight:600;color:#315B43}.view-table .grid{display:none}.view-table .competition-table-wrap{display:block}@media(max-width:360px){.tabs{gap:12px;padding:9px 12px}.tabs button{min-width:96px;padding:6px 16px}}
 .card{background:#fff;border-radius:12px;padding:8px 6px 12px;text-align:center;box-shadow:0 2px 8px rgba(0,0,0,.06)}
 .card.img{background:#F5F0E6;border-radius:8px;height:90px;overflow:hidden;display:flex;align-items:center;justify-content:center}
 .card.img img{width:100%;height:100%;object-fit:cover}
@@ -69,6 +69,41 @@ header{background:#fff;border-radius:0 0 14px 14px;display:flex;align-items:cent
 <b>جائزة 3,500 ر.س</b>
 </div>
 </div>
+<section class="competition-table-wrap" id="competitionTable" aria-labelledby="tableHeading">
+<h2 id="tableHeading">جدول المنافسات</h2>
+<div class="table-scroll">
+<table class="competition-table">
+<thead><tr><th>المسابقة</th><th>يبدأ</th><th>ينتهي</th><th>الجائزة</th><th>الحالة</th></tr></thead>
+<tbody>
+<tr><td>التصميم الفوتوغرافي</td><td>10 نوفمبر</td><td>15 نوفمبر</td><td>3,500 ر.س</td><td class="status">مفتوحة</td></tr>
+<tr><td>الخط العربي</td><td>12 نوفمبر</td><td>20 نوفمبر</td><td>4,500 ر.س</td><td class="status">مفتوحة</td></tr>
+<tr><td>تصميم الشعار</td><td>14 نوفمبر</td><td>22 نوفمبر</td><td>3,500 ر.س</td><td>قريباً</td></tr>
+</tbody>
+</table>
 </div>
+</section>
+</div>
+<script>
+(function(){
+ const app=document.querySelector('.app');
+ const cardsButton=document.querySelector('.tabs .mirvan');
+ const tableButton=document.querySelector('.tabs .jadwal');
+ function show(view){
+  const isTable=view==='table';
+  app.classList.toggle('view-table',isTable);
+  cardsButton.classList.toggle('active',!isTable);
+  tableButton.classList.toggle('active',isTable);
+  cardsButton.setAttribute('aria-pressed',String(!isTable));
+  tableButton.setAttribute('aria-pressed',String(isTable));
+ }
+ cardsButton.type='button'; tableButton.type='button';
+ cardsButton.addEventListener('click',()=>show('cards'));
+ tableButton.addEventListener('click',()=>show('table'));
+ show('cards');
+ document.querySelectorAll('.card.img img').forEach(img=>{
+  img.addEventListener('error',()=>{img.style.display='none';img.parentElement.textContent='صورة المسابقة';},{once:true});
+ });
+})();
+</script>
 </body>
 </html>
