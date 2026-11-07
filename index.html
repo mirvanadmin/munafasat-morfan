@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>MIRVAN - مرفان | منصة المنافسات</title>
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+body{font-family:'Tajawal',sans-serif;background:#E8DED0;color:#000}
+.app{max-width:480px;margin:auto;padding:0 14px 30px;min-height:100vh}
+header{background:#fff;border-radius:0 0 14px 14px;display:flex;align-items:center;justify-content:space-between;padding:16px;margin-top:10px}
+.logo.ar{font-size:32px;color:#C9B88A;font-weight:300}
+.logo.en{font-size:12px;letter-spacing:6px;color:#C9B88A}
+.login{background:#F5F0E6;border:1px solid #000;border-radius:8px;padding:7px 18px;font-size:16px;color:#000;cursor:pointer;font-family:inherit}
+.hero{margin-top:14px;border-radius:18px;overflow:hidden;min-height:180px;padding:28px 20px;color:#fff;position:relative;background:url('panorama-riyadh.jpg') center bottom / cover no-repeat #0A2540}
+.hero h1{font-size:32px;margin-bottom:8px}
+.hero p{font-size:17px;line-height:1.6;max-width:70%}
+.tabs{margin:18px 0;display:flex;justify-content:center;gap:40px;background:#EAD9D2;border-radius:999px;padding:10px 20px}
+.tabs button{background:transparent;border:1px solid #D8C6C6;border-radius:999px;padding:6px 22px;cursor:pointer;font-family:inherit;color:#000}
+.tabs.mirvan{font-size:15px;letter-spacing:5px}
+.tabs.jadwal{font-size:19px}
+.grid{display:grid;grid-template-columns:repeat(3,1fr);gap:10px}
+.card{background:#fff;border-radius:12px;padding:8px 6px 12px;text-align:center;box-shadow:0 2px 8px rgba(0,0,0,.06)}
+.card.img{background:#F5F0E6;border-radius:8px;height:90px;overflow:hidden;display:flex;align-items:center;justify-content:center}
+.card.img img{width:100%;height:100%;object-fit:cover}
+.card h3{font-size:12px;line-height:1.5;margin-bottom:4px}
+.card span{font-size:11px;display:block;line-height:1.6}
+.card.tag{display:inline-block;background:#EAD9D2;border-radius:999px;padding:2px 10px;font-size:11px;margin:4px 0}
+.card b{font-size:12px;display:block}
+</style>
+</head>
+<body>
+<div class="app">
+<header>
+<div class="logo"><div class="ar">مرفان</div><div class="en">MIRVAN</div></div>
+<button class="login">تسجيل</button>
+</header>
+<section class="hero">
+<h1>منافسات مرفان</h1>
+<p>اكتشف وشارك في المسابقات الإبداعية الآن</p>
+</section>
+<div class="tabs">
+<button class="mirvan">MIRVAN</button>
+<button class="jadwal">جدول</button>
+</div>
+<div class="grid">
+<div class="card">
+<div class="img"><img src="contest1.jpg" alt="مسابقة"></div>
+<h3>مسابقة التصميم الفوتوغرافي</h3>
+<span>76 مشارك • ينتهي بعد 5 أيام</span>
+<span class="tag">تصميم</span>
+<b>جائزة 3,500 ر.س</b>
+</div>
+<div class="card">
+<div class="img"><img src="contest2.jpg" alt="مسابقة"></div>
+<h3>مسابقة الخط العربي</h3>
+<span>54 مشارك • ينتهي بعد 5 أيام</span>
+<span class="tag">خط عربي</span>
+<b>جائزة 4,500 ر.س</b>
+</div>
+<div class="card">
+<div class="img"><img src="contest3.jpg" alt="مسابقة"></div>
+<h3>مسابقة تصميم الشعار</h3>
+<span>72 مشارك • ينتهي بعد 5 أيام</span>
+<span class="tag">عمار</span>
+<b>جائزة 3,500 ر.س</b>
+</div>
+</div>
+</div>
+</body>
+</html>
