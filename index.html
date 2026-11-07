@@ -76,6 +76,10 @@ h1{font-size:clamp(32px,4vw,46px);line-height:1.25;margin:0 0 12px;font-weight:7
 <div class="contest-body"><div class="card-meta"><span class="category">التصميم</span><span class="status soon">قريباً – نموذج</span></div><h3>مسابقة تصميم الشعار</h3><div class="details"><span>72 مشاركاً</span><span>تبدأ 14 نوفمبر</span></div><div class="prize-row"><span class="prize-label">قيمة الجائزة</span><span class="prize">3,500 <small>ر.س</small></span></div></div>
 </article>
 </section>
+<div id="tableTools" class="table-tools" style="display:none;justify-content:space-between;align-items:center;gap:10px;flex-wrap:wrap;margin:0 0 10px">
+<span id="resultCount" style="font-size:12px;color:#77818a">3 نتائج نموذجية</span>
+<button id="exportCsv" type="button" style="border:1px solid #b69a67;background:#fffdf9;color:#10283f;border-radius:8px;padding:8px 12px;font-weight:700;cursor:pointer">تصدير CSV للبيانات النموذجية</button>
+</div>
 <section class="table-wrap" id="tableView" aria-label="جدول المنافسات"><div class="table-scroll"><table><thead><tr><th>المنافسة</th><th>الجهة</th><th>المجال</th><th>المنطقة</th><th>آخر موعد</th><th>المصدر</th><th>الحالة</th></tr></thead><tbody>
 <tr data-category="design"><td>التصميم الفوتوغرافي</td><td>جهة نموذجية</td><td>التصميم</td><td>الرياض</td><td>15 نوفمبر – نموذج</td><td>مصدر رسمي غير مربوط</td><td class="table-status">مفتوحة – نموذج</td></tr>
 <tr data-category="calligraphy"><td>الخط العربي</td><td>جهة نموذجية</td><td>الخط العربي</td><td>جميع المناطق</td><td>20 نوفمبر – نموذج</td><td>مصدر رسمي غير مربوط</td><td class="table-status">مفتوحة – نموذج</td></tr>
@@ -97,12 +101,22 @@ cards.forEach((card,i)=>{const ok=(category==='all'||card.dataset.category===cat
 rows.forEach(row=>{const text=row.innerText.toLowerCase();const ok=(category==='all'||row.dataset.category===category)&&(!q||text.includes(q));row.style.display=ok?'':'none'});
 document.getElementById('empty').style.display=visible?'none':'block';
 document.getElementById('cards').style.display=view==='cards'?(visible?'grid':'none'):'none';
-document.getElementById('tableView').style.display=view==='table'?'block':'none';
+document.getElementById('tableView').style.display=view==='table'?'block':'none';document.getElementById('tableTools').style.display=view==='table'?'flex':'none';document.getElementById('resultCount').textContent=visible+' نتائج نموذجية';
 if(view==='table'&&!visible)document.getElementById('tableView').style.display='none';
 cardsBtn.classList.toggle('active',view==='cards');tableBtn.classList.toggle('active',view==='table');
 cardsBtn.setAttribute('aria-pressed',String(view==='cards'));tableBtn.setAttribute('aria-pressed',String(view==='table'));
 }
 filters.forEach(btn=>btn.addEventListener('click',()=>{category=btn.dataset.filter;filters.forEach(b=>b.classList.toggle('active',b===btn));apply()}));
+document.querySelectorAll('#tableView th').forEach((th,index)=>{
+ let direction=1;th.tabIndex=0;th.setAttribute('role','button');th.setAttribute('aria-label','ترتيب حسب '+th.textContent);
+ const sort=()=>{const body=document.querySelector('#tableView tbody');const sorted=[...body.rows].sort((a,b)=>a.cells[index].innerText.localeCompare(b.cells[index].innerText,'ar',{numeric:true})*direction);sorted.forEach(row=>body.appendChild(row));direction*=-1;};
+ th.addEventListener('click',sort);th.addEventListener('keydown',event=>{if(event.key==='Enter'||event.key===' '){event.preventDefault();sort();}});
+});
+document.getElementById('exportCsv').addEventListener('click',()=>{
+ const visibleRows=rows.filter(row=>row.style.display!=='none');
+ const csv=[['المنافسة','الجهة','المجال','المنطقة','آخر موعد','المصدر','الحالة'],...visibleRows.map(row=>[...row.cells].map(cell=>cell.innerText))].map(row=>row.map(value=>'"'+String(value).replace(/"/g,'""')+'"').join(',')).join('\\n');
+ const blob=new Blob(['\\ufeff'+csv],{type:'text/csv;charset=utf-8;'});const url=URL.createObjectURL(blob);const link=document.createElement('a');link.href=url;link.download='mirvan-demo-opportunities.csv';link.click();URL.revokeObjectURL(url);
+});
 search.addEventListener('input',apply);cardsBtn.addEventListener('click',()=>{view='cards';apply()});tableBtn.addEventListener('click',()=>{view='table';apply()});apply();
 })();
 </script>
