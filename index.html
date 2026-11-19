@@ -16,7 +16,7 @@
 <nav class="tracknav" aria-label="المسارات">
 <button class="track active" data-track="tenders"><span class="ico">▤</span><span><strong>المنافسات والفرص</strong><small>منافسات وفرص تعاقدية</small></span></button>
 <button class="track" data-track="realestate"><span class="ico">⌂</span><span><strong>الفرص العقارية والوساطة</strong><small>عقارات وفرص استثمارية</small></span></button>
-<button class="track" data-track="projects"><span class="ico">▥</span><span><strong>مشاريع للبيع</strong><small>مشاريع قائمة وفرص تملك</small></span></button>
+<button class="track" data-track="projects"><span class="ico">▥</span><span><strong>مشاريع للبيع والمستعملة</strong><small>مشاريع قائمة ومستعملة معروضة للبيع</small></span></button>
 <button class="track" data-track="admin"><span class="ico">▦</span><span><strong>الخدمات الإدارية</strong><small>خدمات الأعمال المتخصصة</small></span></button>
 </nav>
 <section class="panel">
@@ -61,7 +61,7 @@ projects:[
 const cfg={
 tenders:{title:"المنافسات والفرص",desc:"استعرض المنافسات والفرص التعاقدية وصنّفها وفق احتياج منشأتك.",l:["النشاط","المنطقة","الحالة","القيمة"],opts:[["تقنية","تشغيل وصيانة","استشارات","إنشاءات","توريد","تدريب"],["الرياض","مكة المكرمة","الشرقية","المدينة المنورة","عسير"],["جديدة","مفتوحة","مغلقة"]]},
 realestate:{title:"الفرص العقارية والوساطة",desc:"ابحث عن العقارات والفرص الاستثمارية وتابع طلبات الوساطة.",l:["نوع العقار","المنطقة","حالة العرض","القيمة"],opts:[["أراضٍ تجارية","أراضٍ سكنية","مبانٍ إدارية","مستودعات","مراكز تجارية"],["الرياض","مكة المكرمة","الشرقية","القصيم"],["متاحة","قيد التفاوض"]]},
-projects:{title:"مشاريع للبيع",desc:"استكشف المشاريع القائمة والمعروضة للبيع بحسب النشاط والموقع والحالة.",l:["نشاط المشروع","المنطقة","حالة العرض","القيمة"],opts:[["خدمات","مطاعم ومقاهي","صناعة","تجارة إلكترونية"],["الرياض","مكة المكرمة","الشرقية","المدينة المنورة"],["معروض للبيع","قيد التفاوض"]]}};
+projects:{title:"مشاريع للبيع والمستعملة",desc:"استكشف المشاريع القائمة والمستعملة المعروضة للبيع بحسب النشاط والموقع والحالة.",l:["نشاط المشروع","المنطقة","حالة العرض","القيمة"],opts:[["خدمات","مطاعم ومقاهي","صناعة","تجارة إلكترونية"],["الرياض","مكة المكرمة","الشرقية","المدينة المنورة"],["معروض للبيع","قيد التفاوض"]]}};
 let track="tenders",view="table";
 const $=id=>document.getElementById(id);
 function fillSelect(id,values,first){$(id).innerHTML='<option value="">'+first+'</option>'+values.map(v=>'<option>'+v+'</option>').join('')}
